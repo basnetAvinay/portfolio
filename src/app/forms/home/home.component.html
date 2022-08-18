@@ -2,7 +2,7 @@
 <app-fireflies></app-fireflies>
 <div class="root centre-xy">
   <div class="child">
-    <p class="text" data-aos="fade-left" data-aos-duration="3000">
+    <p [@fadeUp]="fadeUpAnimation" class="text">
       Hello, I'm <span class="highlight">Avinay Basnet</span>.
       <br>I'm a full stack web developer.
     </p>
@@ -11,7 +11,7 @@
         <mat-icon>save</mat-icon>Download CV</button>
       <button mat-stroked-button color="primary" class="button-lg">Skills</button>
     </div>
-    <div class="toggle-menu">
+    <div class="toggle-menu" @zoomIn>
       <button *ngIf="isMenuOpen" mat-icon-button (click)="toggleMenu()">
         <mat-icon>close</mat-icon>
       </button>
