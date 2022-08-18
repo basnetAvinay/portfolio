@@ -1,17 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-fireflies',
   templateUrl: './fireflies.component.html',
   styleUrls: ['./fireflies.component.scss']
 })
-export class FirefliesComponent implements OnInit {
+export class FirefliesComponent {
 
-  readonly fireflyCount = 15;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  readonly fireflyCount = 30;
 }

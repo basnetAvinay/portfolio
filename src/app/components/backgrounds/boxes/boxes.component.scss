@@ -1,9 +1,9 @@
 .circles {
   position: absolute;
   top: 0;
+  bottom: 0;
+  right: 0;
   left: 0;
-  width: 90%;
-  height: 100vh;
   overflow: hidden;
 }
 
@@ -24,7 +24,6 @@
   height: 80px;
   animation-delay: 0s;
 }
-
 
 .circles li:nth-child(2) {
   left: 10%;
@@ -105,5 +104,4 @@
     opacity: 0;
     border-radius: 50%;
   }
-
 }
