@@ -6,7 +6,19 @@ body {
   top: 0;
   bottom: 0;
   background: #020203;
+  color: #ffffff;
   font-family: 'Quicksand', sans-serif;
+}
+
+.centre-xy {
+  display: flex;
+  justify-content: center; /*centers items on the line (the x-axis by default)*/
+  align-items: center; /*centers items on the cross-axis (y by default)*/
+}
+
+mat-icon {
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 /* Customize website's scrollbar like Mac OS

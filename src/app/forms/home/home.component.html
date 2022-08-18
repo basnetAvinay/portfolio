@@ -1,23 +1,30 @@
 <app-boxes></app-boxes>
 <app-fireflies></app-fireflies>
-<div class="root">
-  <div class="child" style="position: relative;">
+<div class="root centre-xy">
+  <div class="child">
     <p class="text" data-aos="fade-left" data-aos-duration="3000">
       Hello, I'm <span class="highlight">Avinay Basnet</span>.
-      <br><br>I'm a full stack web developer.
+      <br>I'm a full stack web developer.
     </p>
-    <a type="button"
-       href="https://drive.google.com/file/d/1gW9O_vy9lOvyqS8-5wyWikGhOgV-mlwQ/view?usp=sharing"
-       target="_blank"
-       class="btn"
-       data-aos="fade-right"
-       data-aos-duration="3000">
-      <i class="far fa-file-pdf" style="padding-right: 2px;"></i>
-      Download CV
-    </a>
-    <a type="button" href="" class="btn" data-aos="fade-left" data-aos-duration="3000">
-      View my work
-      <i class="fas fa-arrow-right" style="padding-left: 2px;"></i>
-    </a>
+    <div class="more-info centre-xy">
+      <button mat-stroked-button color="primary" class="button-lg">
+        <mat-icon>save</mat-icon>Download CV</button>
+      <button mat-stroked-button color="primary" class="button-lg">Skills</button>
+    </div>
+    <div class="toggle-menu">
+      <button *ngIf="isMenuOpen" mat-icon-button (click)="toggleMenu()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button *ngIf="!isMenuOpen" mat-icon-button (click)="toggleMenu()">
+        <mat-icon>expand_more</mat-icon>
+      </button>
+      <div *ngIf="isMenuOpen" class="menu centre-xy">
+        <button mat-button color="accent">Contact</button>
+        <button mat-button color="accent">Skills</button>
+        <button mat-button color="accent">Contact</button>
+        <button mat-button color="accent">Skills</button>
+        <button mat-button color="accent">Contact</button>
+      </div>
+    </div>
   </div>
 </div>
