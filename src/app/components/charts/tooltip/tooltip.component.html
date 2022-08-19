@@ -1,0 +1,19 @@
+<div class="d-none" #tooltip>
+  <div class="pointer-all popover-body" container="body">
+    <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(data?.toolTipData?.text)"></span>
+    <div *ngFor="let group of data?.buttonGroups" class="popover-body-subcontent">
+      <div><strong>{{ group?.name }}</strong></div>
+      <div class="pills">
+        <a class="btn-pill-teal no-transform"
+           *ngFor="let btn of group?.buttons; let i = index"
+           [class]="btn?.className"
+           [id]="btn.id">
+          {{ btn?.name }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

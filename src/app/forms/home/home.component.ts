@@ -1,23 +1,19 @@
 import {Component, OnInit} from '@angular/core';
-import {fadeUp} from '../../animations/fade.animation';
-import {AnimationParams, StateChangeExpression, ZoomAnimationParams} from '../../animations/animation.constant';
-import {zoomIn} from '../../animations/zoom.animation';
+import {fadeDown, fadeLeft, fadeRight, fadeUp, fadeUpLeft, fadeUpRight} from '../../animations/fade.animation';
+import {AnimationParams, StateChangeExpression} from '../../animations/animation.constant';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [
-    fadeUp,
-    zoomIn
-  ]
+  animations: [fadeLeft, fadeRight, fadeUp, fadeDown, fadeUpLeft, fadeUpRight]
 })
 export class HomeComponent implements OnInit {
 
   isMenuOpen = true;
   fadeUpAnimation: AnimationParams = {
     value: StateChangeExpression.ENTER,
-    params: {animationDuration: 500, distance: 150}
+    params: {animationDuration: 1000, distance: 300}
   }
 
   constructor() {
