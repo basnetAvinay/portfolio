@@ -3,9 +3,9 @@ import d3Tip from 'd3-tip';
 import * as _ from 'lodash';
 import {BarRoundCorner, ChartModelValue, VerticalBarModel} from './bar-chart.component';
 import {ComponentFactoryResolver} from '@angular/core';
-import {TooltipDirective} from '../../directives/tooltip.directive';
-import {Tooltip, TooltipButton} from '../charts/tooltip/tooltip';
-import {TooltipComponent} from '../charts/tooltip/tooltip.component';
+import {TooltipDirective} from '../../../directives/tooltip.directive';
+import {Tooltip, TooltipButton} from '../tooltip/tooltip';
+import {TooltipComponent} from '../tooltip/tooltip.component';
 
 export const ChartTransitionTime = 200;
 export const TOOLTIP_REMOVAL_DEBOUNCE_TIME = 500;
@@ -137,7 +137,8 @@ export class ChartUtils {
     d3.select(node).style('cursor', 'pointer');
     tip
       .attr('class', 'd3-tip n')
-      .style('display', 'block');
+      .style('display', 'block')
+      .style('padding-right', '7px');
     if (applyOffset) {
       tip.offset(ChartUtils.tipOffset(node as Element));
       tip.direction(direction ? direction : (ChartUtils.tipDirection(node as Element)));
@@ -147,70 +148,6 @@ export class ChartUtils {
       .style('opacity', 1)
       .show(datum, i, node);
   }
-
-  // public static initToolTipOnCurser(tip, datum, node, svgContainerRef) {
-  //   tip.destroy();
-  //   const x = d3.event.pageX, y = d3.event.pageY;
-  //   d3.select(node).style('cursor', 'pointer');
-  //   tip
-  //     .attr('class', 'd3-tip n')
-  //     .style('display', 'block')
-  //     .style('white-space', 'nowrap')
-  //     .style('z-index', 4)
-  //     .style('opacity', 1)
-  //     .show(datum, node);
-  //   const tipRect = (d3.select('.d3-tip').node() as any).getBoundingClientRect();
-  //   const direction = this.calculateTipDirection(tipRect, svgContainerRef);
-  //   let top = y + 30;
-  //   let left = x + 10;
-  //   switch (direction) {
-  //     case 'n':
-  //       top = y - tipRect.height - 10;
-  //       left = x - (tipRect.width / 2);
-  //       break;
-  //     case 's':
-  //       left = x - (tipRect.width / 2);
-  //       break;
-  //     case 'w':
-  //       left = x - tipRect.width - 5;
-  //       top = y - tipRect.height / 2;
-  //       break;
-  //     case 'e':
-  //       top = y - tipRect.height / 2;
-  //       break;
-  //     case 'nw':
-  //       top = y - tipRect.height - 10;
-  //       left = x - tipRect.width;
-  //       break;
-  //     case 'ne':
-  //       top = y - tipRect.height - 10;
-  //       break;
-  //     case 'sw':
-  //       left = x - tipRect.width;
-  //       break;
-  //     default:
-  //       // se will have default
-  //       break;
-  //   }
-  //   tip
-  //     .direction(direction)
-  //     .style('top', `${top}px`)
-  //     .style('left', `${left}px`);
-  // }
-
-  // public static calculateTipDirection(tipRect, svgContainerRef) {
-  //   const containerElement = svgContainerRef.getBoundingClientRect();
-  //   let direction = 'n';
-  //   if (d3.event.screenY - document.documentElement.scrollTop - containerElement.top < tipRect.height) {
-  //     direction = 's';
-  //   }
-  //   if (d3.event.offsetX < tipRect.width / 2 + containerElement.left) {
-  //     direction += 'e';
-  //   } else if (d3.event.offsetX + tipRect.width / 2 > containerElement.right) {
-  //     direction += 'w';
-  //   }
-  //   return direction;
-  // }
 
   public static tipDirection(element: Element, eastRatio = 0.25): string {
     const clientWidth = document.documentElement.clientWidth;

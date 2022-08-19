@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="heading" [@fadeLeft]="fadeAnimation">SKILLS</div>
+  <ng-container *ngFor="let item of barChartSections">
+    <div class="sub-heading" [@fadeLeft]="fadeAnimation">{{item.section}}</div>
+    <div class="bar-chart-wrapper" *ngFor="let barChart of item.charts;let i = index;">
+      <div *ngIf="i % 2 !== 0" [@fadeLeft]="fadeAnimation">
+        <ng-container *ngTemplateOutlet="barChartTemplate; context: {barChart: barChart}"></ng-container>
+      </div>
+      <div *ngIf="i % 2 === 0" [@fadeRight]="fadeAnimation">
+        <ng-container *ngTemplateOutlet="barChartTemplate; context: {barChart: barChart}"></ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template let-barChart="barChart" #barChartTemplate>
+  <p class="bar-label" [ngStyle]="{'color' : barChart.barColor}">{{barChart.name}}</p>
+  <app-bar-chart [data]="barChart.data"
+                 [barTooltipText]="barChart.tooltipText"
+                 [useResizeObserver]="false"
+                 [isTopLeftRounded]="true"
+                 [isTopRightRounded]="true"
+                 [isBottomLeftRounded]="true"
+                 [isBottomRightRounded]="true"
+                 [borderRadius]="3"
+                 [domain]="[0, 100]"
+                 [barHeight]="8"
+                 [barColor]="barChart.barColor"
+                 [hasBackgroundBar]="true"
+                 [backgroundBarColor]="'#424242'">
+  </app-bar-chart>
+</ng-template>

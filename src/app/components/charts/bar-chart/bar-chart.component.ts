@@ -13,10 +13,10 @@ import {
 } from '@angular/core';
 import * as d3 from 'd3';
 import { Subject } from 'rxjs';
-import {TooltipDirective} from '../../directives/tooltip.directive';
+import {TooltipDirective} from '../../../directives/tooltip.directive';
 import {ChartConstants} from './chart.contants';
 import {callback, ChartUtils, TOOLTIP_REMOVAL_DEBOUNCE_TIME} from './chart.utils';
-import {TooltipButton} from '../charts/tooltip/tooltip';
+import {TooltipButton} from '../tooltip/tooltip';
 
 export interface GoalDef {
   featureId: string;
@@ -186,7 +186,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
    */
   @Input() normLineClass = '';
 
-  @Input() barColor = 'rgba(0, 174, 239, 1)';
+  @Input() barColor = '#e31b6d';
 
   @Input() barHoverColor = 'rgba(6, 38, 153, 0.5)';
 

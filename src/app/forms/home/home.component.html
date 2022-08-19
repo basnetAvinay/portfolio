@@ -1,19 +1,15 @@
 <app-boxes></app-boxes>
-<app-fireflies></app-fireflies>
 <div class="root centre-xy">
   <div class="child">
-    <p [@fadeLeft]="fadeUpAnimation" class="text">
-      Hello, I'm <span class="highlight">Avinay Basnet</span>.
-    </p>
+    <p [@fadeLeft]="fadeUpAnimation" class="text">Hi! I'm <span class="highlight">Avinay Basnet</span>.</p>
     <p [@fadeRight]="fadeUpAnimation" class="text">I'm a full stack web developer.</p>
     <div class="more-info centre-xy">
       <button [@fadeLeft]="fadeUpAnimation" mat-stroked-button color="primary" class="button-lg">
         <mat-icon>save</mat-icon>
         Download CV
       </button>
-      <button [@fadeRight]="fadeUpAnimation" mat-stroked-button color="primary" class="button-lg">Skills</button>
     </div>
-    <div class="toggle-menu" @zoomIn>
+    <div class="toggle-menu">
       <button @fadeDown *ngIf="isMenuOpen" mat-icon-button (click)="toggleMenu()">
         <mat-icon>close</mat-icon>
       </button>
@@ -29,17 +25,5 @@
       </div>
     </div>
   </div>
-  <app-bar-chart [data]="80"
-                 [barTooltipText]="'test'"
-                 [useResizeObserver]="false"
-                 [isTopLeftRounded]="true"
-                 [isTopRightRounded]="true"
-                 [isBottomLeftRounded]="true"
-                 [isBottomRightRounded]="true"
-                 [borderRadius]="3"
-                 [domain]="[0, 100]"
-                 [barHeight]="6"
-                 [hasBackgroundBar]="true"
-                 [backgroundBarColor]="'#d0f6f4'">
-  </app-bar-chart>
 </div>
+

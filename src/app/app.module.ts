@@ -3,13 +3,13 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FirefliesComponent} from './components/backgrounds/fireflies/fireflies.component';
 import {BoxesComponent} from './components/backgrounds/boxes/boxes.component';
 import {HomeComponent} from './forms/home/home.component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {BarChartComponent} from './components/bar-chart/bar-chart.component';
+import {BarChartComponent} from './components/charts/bar-chart/bar-chart.component';
+import {MaterialModule} from "./material/material.module";
+import {SkillComponent} from './forms/skill/skill.component';
+import {TooltipDirective} from "./directives/tooltip.directive";
 
 @NgModule({
   declarations: [
@@ -18,15 +18,16 @@ import {BarChartComponent} from './components/bar-chart/bar-chart.component';
     BoxesComponent,
     HomeComponent,
     BarChartComponent,
+    SkillComponent,
+    TooltipDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
