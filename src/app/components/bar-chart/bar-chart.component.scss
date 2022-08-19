@@ -74,3 +74,11 @@
     white-space: nowrap;
   }
 }
+
+%tooltip-position {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+}
