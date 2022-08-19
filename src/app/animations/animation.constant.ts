@@ -1,13 +1,3 @@
-export enum StateChangeExpression {
-  ENTER = ':enter',
-  LEAVE = ':leave'
-}
-
-export interface AnimationParams {
-  value: StateChangeExpression;
-  params: FadeAnimationParams | ZoomAnimationParams | SlideAnimationParams;
-}
-
 export interface AnimateDuration {
   animationDuration: number; // e.g, animation duration in millisecond
 }
@@ -30,9 +20,43 @@ export interface FlipAnimationParams extends AnimateDuration {
 }
 
 export const defaultZoomInScale = 0.6;
+
 export const defaultZoomOutScale = 1.2;
-export const defaultDistance = 100;
-export const defaultAnimationDuration = 500;
+
+export const defaultDistance = 300;
+
+export const defaultAnimationDuration = 1000;
+
 export const defaultSlidePercentage = 100;
+
 export const defaultPerspectiveDistance = 2500;
+
 export const defaultRotateDegree = 100;
+
+export const defaultFadeAnimation: FadeAnimationParams = {
+  animationDuration: defaultAnimationDuration,
+  distance: defaultDistance
+};
+
+export const defaultFlipAnimation: FlipAnimationParams = {
+  animationDuration: defaultAnimationDuration,
+  perspectiveDistance: defaultPerspectiveDistance,
+  rotateDegree: defaultRotateDegree
+};
+
+export const defaultZoomInAnimation: ZoomAnimationParams = {
+  zoomInOrOutScale: defaultZoomInScale,
+  distance: defaultDistance,
+  animationDuration: defaultAnimationDuration
+};
+
+export const defaultZoomOutAnimation: ZoomAnimationParams = {
+  zoomInOrOutScale: defaultZoomOutScale,
+  distance: defaultDistance,
+  animationDuration: defaultAnimationDuration
+};
+
+export const defaultSlideAnimation: SlideAnimationParams = {
+  animationDuration: defaultAnimationDuration,
+  slidePercentage: defaultSlidePercentage
+};

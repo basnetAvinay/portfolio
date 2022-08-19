@@ -7,9 +7,9 @@ import {FirefliesComponent} from './components/backgrounds/fireflies/fireflies.c
 import {BoxesComponent} from './components/backgrounds/boxes/boxes.component';
 import {HomeComponent} from './forms/home/home.component';
 import {BarChartComponent} from './components/charts/bar-chart/bar-chart.component';
-import {MaterialModule} from "./material/material.module";
+import {MaterialModule} from './material/material.module';
 import {SkillComponent} from './forms/skill/skill.component';
-import {TooltipDirective} from "./directives/tooltip.directive";
+import {AnimateInModule} from './animate-in/animate-in.module';
 
 @NgModule({
   declarations: [
@@ -18,13 +18,16 @@ import {TooltipDirective} from "./directives/tooltip.directive";
     BoxesComponent,
     HomeComponent,
     BarChartComponent,
-    SkillComponent,
-    TooltipDirective,
+    SkillComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    AnimateInModule.forRoot({
+      threshold: 0,
+      rootMargin: '-100px'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

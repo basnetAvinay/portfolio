@@ -12,11 +12,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import * as d3 from 'd3';
-import { Subject } from 'rxjs';
-import {TooltipDirective} from '../../../directives/tooltip.directive';
+import {Subject} from 'rxjs';
 import {ChartConstants} from './chart.contants';
 import {callback, ChartUtils, TOOLTIP_REMOVAL_DEBOUNCE_TIME} from './chart.utils';
 import {TooltipButton} from '../tooltip/tooltip';
+import {TooltipDirective} from "../tooltip/tooltip.directive";
 
 export interface GoalDef {
   featureId: string;
@@ -34,12 +34,6 @@ export interface BarRoundCorner {
   topRight: boolean;
   bottomLeft: boolean;
   bottomRight: boolean;
-}
-
-export interface BarChartModel {
-  name: string;
-  value: number;
-  referenceValue: number;
 }
 
 export interface BarMetricInfo {

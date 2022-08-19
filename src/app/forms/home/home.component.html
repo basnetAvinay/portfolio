@@ -1,27 +1,53 @@
 <app-boxes></app-boxes>
 <div class="root centre-xy">
   <div class="child">
-    <p [@fadeLeft]="fadeUpAnimation" class="text">Hi! I'm <span class="highlight">Avinay Basnet</span>.</p>
-    <p [@fadeRight]="fadeUpAnimation" class="text">I'm a full stack web developer.</p>
+    <p [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn class="text">
+      Hi! I'm <span class="highlight">Avinay Basnet</span>.
+    </p>
+    <p [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn class="text">
+      I'm a full stack web developer.
+    </p>
     <div class="more-info centre-xy">
-      <button [@fadeLeft]="fadeUpAnimation" mat-stroked-button color="primary" class="button-lg">
+      <button [animateInAnimation]="FadeAnimationUtil.fadeLeft()"
+              animateIn
+              class="button-lg"
+              color="primary"
+              mat-stroked-button>
         <mat-icon>save</mat-icon>
         Download CV
       </button>
     </div>
     <div class="toggle-menu">
-      <button @fadeDown *ngIf="isMenuOpen" mat-icon-button (click)="toggleMenu()">
+      <button (click)="toggleMenu()"
+              *ngIf="isMenuOpen"
+              [animateInAnimation]="FadeAnimationUtil.fadeDown()"
+              animateIn
+              mat-icon-button>
         <mat-icon>close</mat-icon>
       </button>
-      <button @fadeDown *ngIf="!isMenuOpen" mat-icon-button (click)="toggleMenu()">
+      <button (click)="toggleMenu()"
+              *ngIf="!isMenuOpen"
+              [animateInAnimation]="FadeAnimationUtil.fadeDown()"
+              animateIn
+              mat-icon-button>
         <mat-icon>expand_more</mat-icon>
       </button>
       <div *ngIf="isMenuOpen" class="menu centre-xy">
-        <button [@fadeLeft]="fadeUpAnimation" mat-button color="accent">Contact</button>
-        <button [@fadeUpLeft]="fadeUpAnimation" mat-button color="accent">Skills</button>
-        <button [@fadeUp]="fadeUpAnimation" mat-button color="accent">Contact</button>
-        <button [@fadeUpRight]="fadeUpAnimation" mat-button color="accent">Skills</button>
-        <button [@fadeRight]="fadeUpAnimation" mat-button color="accent">Contact</button>
+        <button [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn color="accent" mat-button>
+          Contact
+        </button>
+        <button [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn color="accent" mat-button>
+          Skills
+        </button>
+        <button [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn color="accent" mat-button>
+          Contact
+        </button>
+        <button [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn color="accent" mat-button>
+          Skills
+        </button>
+        <button [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn color="accent" mat-button>
+          Contact
+        </button>
       </div>
     </div>
   </div>

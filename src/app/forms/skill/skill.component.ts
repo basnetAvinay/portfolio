@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {fadeLeft, fadeRight} from "../../animations/fade.animation";
-import {AnimationParams, StateChangeExpression} from "../../animations/animation.constant";
+import {FadeAnimationUtil} from "../../utils/animation/fade-animation.util";
 
 interface BarChartSection {
   section: string,
@@ -17,16 +16,13 @@ interface BarChart {
 @Component({
   selector: 'app-skill',
   templateUrl: './skill.component.html',
-  styleUrls: ['./skill.component.scss'],
-  animations: [fadeLeft, fadeRight]
+  styleUrls: ['./skill.component.scss']
 })
 export class SkillComponent implements OnInit {
 
+  readonly FadeAnimationUtil = FadeAnimationUtil;
+
   barChartSections: BarChartSection[];
-  fadeAnimation: AnimationParams = {
-    value: StateChangeExpression.ENTER,
-    params: {animationDuration: 1000, distance: 300}
-  }
 
   constructor() {
   }

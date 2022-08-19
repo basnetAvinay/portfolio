@@ -1,12 +1,13 @@
 <div class="container">
-  <div class="heading" [@fadeLeft]="fadeAnimation">SKILLS</div>
+  <div [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn class="heading">SKILLS
+  </div>
   <ng-container *ngFor="let item of barChartSections">
-    <div class="sub-heading" [@fadeLeft]="fadeAnimation">{{item.section}}</div>
+    <div [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn class="sub-heading">{{item.section}}</div>
     <div class="bar-chart-wrapper" *ngFor="let barChart of item.charts;let i = index;">
-      <div *ngIf="i % 2 !== 0" [@fadeLeft]="fadeAnimation">
+      <div *ngIf="i % 2 !== 0" [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn>
         <ng-container *ngTemplateOutlet="barChartTemplate; context: {barChart: barChart}"></ng-container>
       </div>
-      <div *ngIf="i % 2 === 0" [@fadeRight]="fadeAnimation">
+      <div *ngIf="i % 2 === 0" [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn>
         <ng-container *ngTemplateOutlet="barChartTemplate; context: {barChart: barChart}"></ng-container>
       </div>
     </div>

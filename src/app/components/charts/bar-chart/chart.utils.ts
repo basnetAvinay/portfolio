@@ -1,111 +1,25 @@
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 import * as _ from 'lodash';
-import {BarRoundCorner, ChartModelValue, VerticalBarModel} from './bar-chart.component';
+import {BarRoundCorner} from './bar-chart.component';
 import {ComponentFactoryResolver} from '@angular/core';
-import {TooltipDirective} from '../../../directives/tooltip.directive';
 import {Tooltip, TooltipButton} from '../tooltip/tooltip';
 import {TooltipComponent} from '../tooltip/tooltip.component';
+import {TooltipDirective} from "../tooltip/tooltip.directive";
 
-export const ChartTransitionTime = 200;
 export const TOOLTIP_REMOVAL_DEBOUNCE_TIME = 500;
 
 const _debounceDestroyToolTip = _.debounce(() => {
   ChartUtils.destroyToolTip();
 }, TOOLTIP_REMOVAL_DEBOUNCE_TIME);
 
-export enum D3ScaleType {
-  BAND = 'BAND',
-  TIME = 'TIME',
-  LINEAR = 'LINEAR',
-  POWER = 'POWER',
-  LOG = 'LOG',
-  ORDINAL = 'ORDINAL'
-}
-
 export class ChartUtils {
-  public static getLinearScale(domain, range): d3.ScaleLinear<number, number> {
-    const scale = d3.scaleLinear()
-      .domain(domain)
-      .range(range);
-    scale['type'] = D3ScaleType.LINEAR;
-    return scale;
-  }
-
-  public static getBandScale(domain, range, innerPadding = 0, outerPadding = 0): d3.ScaleBand<string> {
-    const scale = d3.scaleBand()
-      .range(range)
-      .domain(domain)
-      .paddingInner(innerPadding)
-      .paddingOuter(outerPadding);
-    scale['type'] = D3ScaleType.BAND;
-    return scale;
-  }
-
-  public static getOrdinalScale(domain, range): d3.ScaleOrdinal<any, any> {
-    const scale = d3.scaleOrdinal()
-      .range(range)
-      .domain(domain);
-    scale['type'] = D3ScaleType.ORDINAL;
-    return scale;
-  }
-
-  public static getTimeScale(domain, range): d3.ScaleTime<any, any> {
-    const scale = d3.scaleTime()
-      .range(range)
-      .domain(domain);
-    scale['type'] = D3ScaleType.TIME;
-    return scale;
-  }
-
-
-  public static getToolTip() {
-    return d3Tip().attr('class', 'd3-tip')
-      .offset([-5, -5])
-      .html(function (d) {
-        return d;
-      });
-  }
 
   public static getToolTipForBarChart() {
     return d3Tip().attr('class', 'd3-tip')
       .offset([-5, 0])
       .html(function (data) {
         return (data);
-      });
-  }
-
-  /*
-   return transition
-   */
-  public static getLinearTransition(transitionTime: number) {
-    return d3.transition(null)
-      .duration(transitionTime)
-      .ease(d3.easeLinear);
-  }
-
-  /*
-  returns 0 single period and 2 for double period.
-   */
-  public static getMaxArrayLength(dataset: VerticalBarModel[]) {
-    const index = dataset.reduce((p, c, i, a) => a[p].series.length > c.series.length ? p : i, 0);
-    return dataset[index].series.length;
-  }
-
-  /*
-  type is 'norm' to generate norm line and 'value' to generate line graph
-   */
-  public static getLineGenerator(xScale: any, yScale: d3.ScaleLinear<number, number>): d3.Line<ChartModelValue> {
-    return d3.line<ChartModelValue>()
-      .x((d, i) => {
-        if (xScale.hasOwnProperty('bandwidth')) {
-          return xScale(d['name']) + xScale.bandwidth() / 2;
-        } else {
-          return xScale(d['name']);
-        }
-      })
-      .y((d, i) => {
-        return yScale(d['value']);
       });
   }
 
@@ -215,38 +129,6 @@ export class ChartUtils {
     return rectPath;
   }
 
-  /**
-   * @ignore
-   */
-  public static wrapTickText(tickTexts: d3.Selection<d3.BaseType, {}, d3.BaseType, number>, width: number) {
-    tickTexts.each((datum, index, groups) => {
-      const tickText = d3.select(groups[index]);
-      const words = tickText.text().split(/\s+/).reverse();
-      const tickTextY = tickText.attr('y');
-      const tickTextDy = parseFloat(tickText.attr('dy'));
-      const tickTextX = parseFloat(tickText.attr('x') || '0');
-      const lineHeight = 1.1;
-      tickText.text(null);
-      let word, lineNum = 0;
-      let tspan = tickText.append('tspan')
-        .attr('x', tickTextX)
-        .attr('y', tickTextY)
-        .attr('dy', tickTextDy + 'em');
-      while (word = words.pop()) {
-        const tspanText = tspan.text() || '';
-        tspan.text(tspanText.concat(' ' + word));
-        if ((<SVGTSpanElement>tspan.node()).getComputedTextLength() > width && tspanText !== '') {
-          tspan.text(tspanText);
-          tspan = tickText.append('tspan')
-            .attr('x', tickTextX)
-            .attr('y', tickTextY)
-            .attr('dy', `${++lineNum * lineHeight + tickTextDy}em`)
-            .text(word);
-        }
-      }
-    });
-  }
-
   public static initComplexToolTip(
     x, y,
     tip, node,
@@ -293,7 +175,7 @@ export class ChartUtils {
       .show(node);
     const tipRect = (d3.select('.d3-tip').node() as any).getBoundingClientRect();
     const svgDirection = direction || ChartUtils.tipDirection(node as Element, 0.3);
-    let top = y + 20;
+    let top: number;
     let left = x + 10;
 
     switch (svgDirection) {
@@ -354,7 +236,7 @@ export class ChartUtils {
 
 let callbackFn: Function;
 let callBackTimer;
-export const callback = (fn: Function, timeout= 50) => {
+export const callback = (fn: Function, timeout = 50) => {
   callbackFn = fn;
   callBackTimer = setTimeout(() => fn(), timeout);
 };
@@ -365,16 +247,3 @@ export const clearCallback = () => {
 };
 
 let holdTooltipInterval: NodeJS.Timeout;
-
-
-export const isDragMode = (): boolean => {
-  return window['isDragModeActive'] as boolean;
-};
-
-export const setDragMode = () => {
-  window['isDragModeActive'] = true;
-};
-
-export const unsetDragMode = () => {
-  window['isDragModeActive'] = false;
-};
