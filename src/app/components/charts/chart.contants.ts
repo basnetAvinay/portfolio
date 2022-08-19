@@ -36,9 +36,3 @@ export class ChartConstants {
 
 
 }
-
-export enum PatternId {
-  PATTERN_1 = 'PATTERN_1',
-  PATTERN_2 = 'PATTERN_2',
-  NONE = ''
-}

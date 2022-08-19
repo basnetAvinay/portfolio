@@ -1,5 +1,5 @@
 import {animate, style} from '@angular/animations';
-import {defaultFadeAnimation, FadeAnimationParams} from '../../animations/animation.constant';
+import {defaultFadeAnimation, FadeAnimationParams} from '../../animate-in/animation.constant';
 
 export class FadeAnimationUtil {
 

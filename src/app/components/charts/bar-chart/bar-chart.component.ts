@@ -13,10 +13,10 @@ import {
 } from '@angular/core';
 import * as d3 from 'd3';
 import {Subject} from 'rxjs';
-import {ChartConstants} from './chart.contants';
-import {callback, ChartUtils, TOOLTIP_REMOVAL_DEBOUNCE_TIME} from './chart.utils';
+import {ChartConstants} from '../chart.contants';
+import {callback, ChartUtil, TOOLTIP_REMOVAL_DEBOUNCE_TIME} from '../chart.util';
 import {TooltipButton} from '../tooltip/tooltip';
-import {TooltipDirective} from "../tooltip/tooltip.directive";
+import {TooltipDirective} from '../tooltip/tooltip.directive';
 
 export interface GoalDef {
   featureId: string;
@@ -40,36 +40,6 @@ export interface BarMetricInfo {
   name: string;
   popLabel: string;
   isClickable: boolean;
-}
-
-export interface VerticalBarModel {
-  name: string;
-  series: SeriesItem[];
-  description?: string;
-  maxValue?: number;
-  extras?: any;
-}
-
-export interface SeriesItem {
-  name: string;
-  period?: string;
-  value: any;
-  referenceValue: any;
-  sum?: number;
-  maxValue?: number;
-  goalDef?: GoalDef;
-  selected?: boolean;
-  isSingleToggleActive?: boolean;
-  isRelatedWithRightYAxis?: boolean;
-  color?: string;
-}
-export interface ChartModelValue {
-  name: string;
-  referenceValue: any;
-  sum?: number;
-  value: any;
-  value1?: any;
-  value2?: any;
 }
 
 /**
@@ -279,7 +249,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
   public prepareChart(_width?: number): void {
     if (this.isDataAndDomainAcceptable()) {
       this.fixDomain();
-      const tip = ChartUtils.getToolTipForBarChart();
+      const tip = ChartUtil.getToolTipForBarChart();
       d3.selectAll('.d3-tip').remove();
       if (this.isDataInRange()) {
         const width = _width !== undefined ? _width : this.getWidth();
@@ -299,7 +269,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
 
         rect.enter()
           .append('path')
-          .attr('d', ChartUtils.getRightRoundedRectPath(0, 0, 0, 0, 0, barRoundCorner))
+          .attr('d', ChartUtil.getRightRoundedRectPath(0, 0, 0, 0, 0, barRoundCorner))
           .attr('fill', (d, i) => {
             if (this.hasBackgroundBar) {
               return [this.backgroundBarColor, this.barColor][i];
@@ -331,7 +301,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
                           name: option,
                           callback: () => {
                             this.toolTipEmitter.emit(option);
-                            ChartUtils.destroyToolTip();
+                            ChartUtil.destroyToolTip();
                           },
                         };
                         return btn;
@@ -342,7 +312,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
                       },
                       buttonGroups: buttons?.length > 0 ? [{ name: this.drillLabel, buttons }] : null,
                     };
-                    ChartUtils.initComplexToolTip(
+                    ChartUtil.initComplexToolTip(
                       x, y,
                       tip,
                       nodes[i],
@@ -356,15 +326,15 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
                     );
                   });
                 } else {
-                  ChartUtils.destroyToolTip();
-                  ChartUtils.initToolTip(tip, barTooltipText, current.node());
+                  ChartUtil.destroyToolTip();
+                  ChartUtil.initToolTip(tip, barTooltipText, current.node());
                 }
               })
               .on('mouseout', () => {
                 if (this.isDrillable) {
-                  ChartUtils.debounceDestroyToolTip();
+                  ChartUtil.debounceDestroyToolTip();
                 } else {
-                  ChartUtils.destroyToolTip();
+                  ChartUtil.destroyToolTip();
                 }
               })
               .on('click', () => {
@@ -377,7 +347,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
           })
           .attr('d', (d, i, elements) => {
             const elementWidth = (this.hasBackgroundBar && !i) ? width : barWidth;
-            return ChartUtils.getRightRoundedRectPath(0, 0, elementWidth, this.barHeight, barWidth === 0 ? barWidth :
+            return ChartUtil.getRightRoundedRectPath(0, 0, elementWidth, this.barHeight, barWidth === 0 ? barWidth :
               this.borderRadius ? this.borderRadius : this.barHeight * 0.2, barRoundCorner);
           })
           .transition().duration(this.barTransitionTime)
@@ -406,7 +376,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
         if (this.isNormDataAcceptable()) {
           if (this.isNormDataInRange()) {
             this.fixNormInputs();
-            const normTip =    ChartUtils.getToolTipForBarChart();
+            const normTip =    ChartUtil.getToolTipForBarChart();
             const normPoint = `${xScale(this.normData)}`;
             let normGroup = svg.selectAll<SVGGElement, number>('g.norm').data([1]);
             normGroup = normGroup.enter().append('g')
@@ -418,8 +388,8 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
                 current.call(normTip);
                 current
                   .on('mouseover', function (d) {
-                    ChartUtils.flushDestroyToolTip();
-                    ChartUtils.initToolTip(normTip, normTooltipText, current.node());
+                    ChartUtil.flushDestroyToolTip();
+                    ChartUtil.initToolTip(normTip, normTooltipText, current.node());
                   })
                   .on('mouseout', function () {
                     d3.selectAll('.d3-tip').remove();
@@ -507,7 +477,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
             .attr('fill', 'transparent')
             .attr('class', `overlay-tooltip`)
             .merge(toolTipRect)
-            .attr('d', ChartUtils.getRightRoundedRectPath(0, 0, Math.max(...widths), this.barHeight, barWidth === 0 ? barWidth :
+            .attr('d', ChartUtil.getRightRoundedRectPath(0, 0, Math.max(...widths), this.barHeight, barWidth === 0 ? barWidth :
               this.borderRadius ? this.borderRadius : this.barHeight * 0.2, barRoundCorner))
             .each((datum, index, groups) => {
               const tooltipText = this.barTooltipText;
@@ -515,7 +485,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
               current.call(tip);
               current
                 .on('mouseover', function (d) {
-                  ChartUtils.initToolTip(tip, tooltipText, current.node());
+                  ChartUtil.initToolTip(tip, tooltipText, current.node());
                 })
                 .on('mouseout', function () {
                   d3.selectAll('.d3-tip').remove();
@@ -547,7 +517,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
     };
     d3.select(this.svgContainerRef.nativeElement).select('path.bar')
       .transition().duration(this.barTransitionTime)
-      .attr('d', ChartUtils.getRightRoundedRectPath(0, 0, 0, 0, 0, barRoundCorner))
+      .attr('d', ChartUtil.getRightRoundedRectPath(0, 0, 0, 0, 0, barRoundCorner))
       .remove();
   }
 
@@ -665,7 +635,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
   }
 
   private drawGoal(goal: GoalDef, svg: d3.Selection<SVGSVGElement, unknown, null, undefined>, xScale: d3.ScaleLinear<number, number>) {
-    const tip = ChartUtils.getToolTipForBarChart();
+    const tip = ChartUtil.getToolTipForBarChart();
 
     const goalPolygonData = [];
     const goalLineData = [];
@@ -715,7 +685,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
                           name: option,
                           callback: () => {
                             this.toolTipEmitter.emit(option);
-                            ChartUtils.destroyToolTip();
+                            ChartUtil.destroyToolTip();
                           },
                         };
                         return btn;
@@ -723,7 +693,7 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
                     },
                   ],
                 };
-                ChartUtils.initComplexToolTip(
+                ChartUtil.initComplexToolTip(
                   x, y,
                   tip,
                   nodes[i],
@@ -736,15 +706,15 @@ export class BarChartComponent implements OnInit, OnChanges, OnDestroy, DoCheck 
                 );
               });
             } else {
-              ChartUtils.destroyToolTip();
-              ChartUtils.initToolTip(tip, goalTooltipText, current.node());
+              ChartUtil.destroyToolTip();
+              ChartUtil.initToolTip(tip, goalTooltipText, current.node());
             }
           })
           .on('mouseout',  () => {
             if (this.isDrillable) {
-              ChartUtils.debounceDestroyToolTip();
+              ChartUtil.debounceDestroyToolTip();
             } else {
-              ChartUtils.destroyToolTip();
+              ChartUtil.destroyToolTip();
             }
           });
       });

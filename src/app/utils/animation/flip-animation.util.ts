@@ -1,4 +1,4 @@
-import {defaultFlipAnimation, FlipAnimationParams} from '../../animations/animation.constant';
+import {defaultFlipAnimation, FlipAnimationParams} from '../../animate-in/animation.constant';
 import {animate, style} from '@angular/animations';
 
 export class FlipAnimationUtil {

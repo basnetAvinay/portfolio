@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FadeAnimationUtil} from "../../utils/animation/fade-animation.util";
+import {FadeAnimationUtil} from '../../utils/animation/fade-animation.util';
 
 interface BarChartSection {
   section: string,
@@ -58,8 +58,8 @@ export class SkillComponent implements OnInit {
 
     const misc: BarChart[] =[
       {name: 'Oauth', data: 90, tooltipText: '90%', barColor: '#2EC4B6'},
-      {name: 'Git', data: 90, tooltipText: '90%', barColor: '#ec5453'},
       {name: 'Firebase', data: 70, tooltipText: '70%', barColor: '#4F517D'},
+      {name: 'Git', data: 90, tooltipText: '90%', barColor: '#ec5453'},
       // {name: 'NGINX'}
     ];
 

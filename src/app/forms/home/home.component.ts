@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FadeAnimationUtil} from '../../utils/animation/fade-animation.util';
-import {FadeAnimationParams} from '../../animations/animation.constant';
+import {FadeAnimationParams} from '../../animate-in/animation.constant';
 
 @Component({
   selector: 'app-home',

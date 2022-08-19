@@ -1,5 +1,5 @@
 import {animate, style} from '@angular/animations';
-import {defaultSlideAnimation, SlideAnimationParams} from '../../animations/animation.constant';
+import {defaultSlideAnimation, SlideAnimationParams} from '../../animate-in/animation.constant';
 
 export class SlideAnimationUtil {
 

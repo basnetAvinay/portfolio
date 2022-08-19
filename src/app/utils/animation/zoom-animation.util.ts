@@ -2,8 +2,8 @@ import {
   defaultZoomInAnimation,
   defaultZoomOutAnimation,
   ZoomAnimationParams
-} from '../../animations/animation.constant';
-import {animate, AnimationAnimateMetadata, style} from "@angular/animations";
+} from '../../animate-in/animation.constant';
+import {animate, AnimationAnimateMetadata, style} from '@angular/animations';
 
 export class ZoomAnimationUtil {
 

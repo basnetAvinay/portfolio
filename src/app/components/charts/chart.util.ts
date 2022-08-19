@@ -1,19 +1,19 @@
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 import * as _ from 'lodash';
-import {BarRoundCorner} from './bar-chart.component';
+import {BarRoundCorner} from './bar-chart/bar-chart.component';
 import {ComponentFactoryResolver} from '@angular/core';
-import {Tooltip, TooltipButton} from '../tooltip/tooltip';
-import {TooltipComponent} from '../tooltip/tooltip.component';
-import {TooltipDirective} from "../tooltip/tooltip.directive";
+import {Tooltip, TooltipButton} from './tooltip/tooltip';
+import {TooltipComponent} from './tooltip/tooltip.component';
+import {TooltipDirective} from './tooltip/tooltip.directive';
 
 export const TOOLTIP_REMOVAL_DEBOUNCE_TIME = 500;
 
 const _debounceDestroyToolTip = _.debounce(() => {
-  ChartUtils.destroyToolTip();
+  ChartUtil.destroyToolTip();
 }, TOOLTIP_REMOVAL_DEBOUNCE_TIME);
 
-export class ChartUtils {
+export class ChartUtil {
 
   public static getToolTipForBarChart() {
     return d3Tip().attr('class', 'd3-tip')
@@ -54,8 +54,8 @@ export class ChartUtils {
       .style('display', 'block')
       .style('padding-right', '7px');
     if (applyOffset) {
-      tip.offset(ChartUtils.tipOffset(node as Element));
-      tip.direction(direction ? direction : (ChartUtils.tipDirection(node as Element)));
+      tip.offset(ChartUtil.tipOffset(node as Element));
+      tip.direction(direction ? direction : (ChartUtil.tipDirection(node as Element)));
     }
     tip
       .style('z-index', 4)
@@ -77,7 +77,7 @@ export class ChartUtils {
   }
 
   public static tipOffset(element: Element): [number, number] {
-    const direction = ChartUtils.tipDirection(element);
+    const direction = ChartUtil.tipDirection(element);
     if (direction === 'e') {
       return [-4, 6];
     } else if (direction === 'w') {
@@ -140,7 +140,7 @@ export class ChartUtils {
     direction: 'n' | 'w' | 'e' = null,
     isDirectionTipClose = false
   ): void {
-    ChartUtils.cancelDestroyToolTip();
+    ChartUtil.cancelDestroyToolTip();
     d3.selectAll('.d3-tip').remove();
     tip.destroy();
 
@@ -166,15 +166,15 @@ export class ChartUtils {
       .style('display', 'block')
       .style('padding', '0');
     if (applyOffset) {
-      tip.offset(ChartUtils.tipOffset(node as Element));
-      // tip.direction(direction ? direction : (ChartUtils.tipDirection(node as Element)));
+      tip.offset(ChartUtil.tipOffset(node as Element));
+      // tip.direction(direction ? direction : (ChartUtil.tipDirection(node as Element)));
     }
     tip
       .style('z-index', 6)
       .style('opacity', 1)
       .show(node);
     const tipRect = (d3.select('.d3-tip').node() as any).getBoundingClientRect();
-    const svgDirection = direction || ChartUtils.tipDirection(node as Element, 0.3);
+    const svgDirection = direction || ChartUtil.tipDirection(node as Element, 0.3);
     let top: number;
     let left = x + 10;
 
@@ -209,7 +209,7 @@ export class ChartUtils {
       }
       clearCallback();
       holdTooltipInterval = setInterval(() => {
-        ChartUtils.debounceDestroyToolTip();
+        ChartUtil.debounceDestroyToolTip();
       }, drillableTooltipDebounce / 2);
     });
     drillableTooltip.addEventListener('mouseleave', () => {
