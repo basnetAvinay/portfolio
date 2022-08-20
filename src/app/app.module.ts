@@ -7,9 +7,13 @@ import {MaterialModule} from './material/material.module';
 import {HomeModule} from './forms/home/home.module';
 import {SkillModule} from './forms/skill/skill.module';
 import {CommonModule} from '@angular/common';
+import {ExperienceComponent} from './forms/experience/experience.component';
+import {AnimateInModule} from "./animate-in/animate-in.module";
+import {ProjectComponent} from './forms/project/project.component';
+import {ContactComponent} from './forms/contact/contact.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ExperienceComponent, ProjectComponent, ContactComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -17,6 +21,7 @@ import {CommonModule} from '@angular/common';
     HomeModule,
     SkillModule,
     MaterialModule,
+    AnimateInModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

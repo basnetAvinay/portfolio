@@ -7,7 +7,7 @@
       <div *ngIf="i % 2 !== 0" [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn>
         <ng-container *ngTemplateOutlet="barChartTemplate; context: {barChart: barChart}"></ng-container>
       </div>
-      <div *ngIf="i % 2 === 0" [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn>
+      <div *ngIf="i % 2 === 0" [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn>
         <ng-container *ngTemplateOutlet="barChartTemplate; context: {barChart: barChart}"></ng-container>
       </div>
     </div>

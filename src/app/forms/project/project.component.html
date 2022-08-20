@@ -1,0 +1,31 @@
+<div class="container">
+  <div [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn class="heading">PROJECTS</div>
+  <div class="card-wrapper centre-xy">
+    <ng-container *ngFor="let project of projects; let i = index">
+      <div *ngIf="i % 2 !== 0" [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn>
+        <ng-container *ngTemplateOutlet="projectTemplate; context: {project: project}"></ng-container>
+      </div>
+      <div *ngIf="i % 2 === 0" [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn>
+        <ng-container *ngTemplateOutlet="projectTemplate; context: {project: project}"></ng-container>
+      </div>
+
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #projectTemplate let-project="project">
+  <mat-card class="mat-card">
+    <div class="card-content align-center">
+      <mat-card-title class="mat-card-title">{{project.title}}</mat-card-title>
+      <mat-card-subtitle class="mat-card-subtitle highlight">{{project.techStack}}</mat-card-subtitle>
+    </div>
+    <div class="card-content align-center text">
+      <mat-card-content><p>{{project.description}}</p></mat-card-content>
+    </div>
+    <div class="card-content align-center">
+      <a class="button-lg" color="primary" href="{{project.projectLink}}" mat-stroked-button target="_blank">{{project.buttonName}}</a>
+    </div>
+  </mat-card>
+</ng-template>
+
+

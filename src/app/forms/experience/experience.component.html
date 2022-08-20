@@ -1,0 +1,28 @@
+<div class="container">
+  <div [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn class="heading">EXPERIENCES</div>
+  <div class="card-wrapper centre-xy">
+      <ng-container *ngFor="let experience of experiences; let i = index">
+        <div *ngIf="i % 2 !== 0" [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn>
+          <ng-container *ngTemplateOutlet="experienceTemplate; context: {experience: experience}"></ng-container>
+        </div>
+        <div *ngIf="i % 2 === 0" [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn>
+          <ng-container *ngTemplateOutlet="experienceTemplate; context: {experience: experience}"></ng-container>
+        </div>
+      </ng-container>
+    </div>
+</div>
+
+<ng-template #experienceTemplate let-experience="experience">
+  <mat-card class="mat-card">
+    <div class="card-content align-center">
+      <mat-card-title class="mat-card-title">{{experience.jobTitle}} at {{experience.companyName}}</mat-card-title>
+      <p class="text">{{experience.startDate}} - {{experience.endDate}}</p>
+      <mat-card-subtitle class="mat-card-subtitle highlight">{{experience.techStack}}</mat-card-subtitle>
+    </div>
+    <div class="card-content align-center text">
+      <mat-card-content><p>{{experience.description}}</p></mat-card-content>
+    </div>
+  </mat-card>
+</ng-template>
+
+

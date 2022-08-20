@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&display=swap');
 @import 'scss/graphs';
+@import 'scss/cards';
 
 body {
   left: 0;
@@ -11,10 +12,26 @@ body {
   font-family: 'Quicksand', sans-serif;
 }
 
+.company {
+  color: #E94F37;
+}
+
+.highlight {
+  color: #e31b6d;
+}
+
+.text {
+  color: #787878;
+}
+
 .centre-xy {
   display: flex;
   justify-content: center; /*centers items on the line (the x-axis by default)*/
   align-items: center; /*centers items on the cross-axis (y by default)*/
+}
+
+.inline-display {
+  display: inline !important;
 }
 
 mat-icon {

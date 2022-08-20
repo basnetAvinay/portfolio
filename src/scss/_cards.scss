@@ -1,0 +1,33 @@
+.mat-card {
+  background: #161616;
+  max-width: 40rem;
+  min-width: 40rem;
+  min-height: 10rem;
+  font-family: inherit;
+  margin-bottom: 1.5rem;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  min-width: 40rem;
+}
+
+.align-center {
+  min-width: 40rem;
+  text-align: center;
+}
+
+.mat-card-title {
+  font-size: 1.8rem !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #CED4DA;
+}
+
+.mat-card-subtitle {
+  font-size: 1rem !important;
+}
