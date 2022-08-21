@@ -3,18 +3,18 @@
   <div class="card-wrapper centre-xy">
     <mat-card class="mat-card" style="background-color: transparent">
       <div class="card-content">
-        <p class="text">SAY HELLO</p>
-        <p class="contact-text">Let's do great things together.</p>
+        <p [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn class="text">SAY HELLO</p>
+        <p [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn class="contact-text">Let's do great things together.</p>
       </div>
       <div class="card-content">
-        <mat-form-field appearance="fill" class="input input-md">
+        <mat-form-field [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn appearance="fill" class="input input-md">
           <mat-label>Name</mat-label>
           <input [formControl]="nameFormControl" matInput>
           <mat-error *ngIf="emailFormControl.hasError('required')">
             Name is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" class="input input-md mr-1 ml-1">
+        <mat-form-field [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn appearance="fill" class="input input-md mr-1 ml-1">
           <mat-label>Email</mat-label>
           <input [formControl]="emailFormControl" matInput>
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -26,7 +26,7 @@
         </mat-form-field>
       </div>
       <div class="card-content">
-        <mat-form-field appearance="fill" class="input input-md">
+        <mat-form-field [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn appearance="fill" class="input input-md">
           <mat-label>Leave a message</mat-label>
           <textarea [formControl]="messageFormControl" matInput></textarea>
           <mat-error *ngIf="messageFormControl.hasError('required')">
@@ -40,6 +40,8 @@
               [disabled]="!nameFormControl.valid && !emailFormControl.valid && !messageFormControl.valid"
               class="button-lg"
               color="primary"
+              [animateInAnimation]="FadeAnimationUtil.fadeDown()"
+              animateIn
               mat-stroked-button>Send Message
       </button>
       <mat-spinner *ngIf="this.loading" [diameter]="40"></mat-spinner>
