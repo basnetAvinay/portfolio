@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FadeAnimationUtil} from 'src/app/utils/animation/fade-animation.util';
 import {FadeAnimationParams} from '../../animate-in/animation.constant';
 import {ActivatedRoute, IsActiveMatchOptions} from '@angular/router';
-import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 
 @Component({
@@ -30,10 +29,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.fragment.pipe(takeUntil(this.unsubscribe)).subscribe(v => {
-      console.log(v);
-      this.activeFragment = v;
-    });
+    // this.route.fragment.pipe(takeUntil(this.unsubscribe)).subscribe(v => {
+    //   this.activeFragment = v;
+    // });
   }
 
   toggleMenu(): void {
