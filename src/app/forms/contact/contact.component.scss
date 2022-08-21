@@ -1,3 +1,7 @@
 .contact-text {
   font-size: 1.4rem;
 }
+
+:host ::ng-deep .mat-form-field-flex {
+  background: #020203;
+}

@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {FadeAnimationUtil} from '../../utils/animation/fade-animation.util';
-import {FadeAnimationParams} from '../../animate-in/animation.constant';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +9,4 @@ import {FadeAnimationParams} from '../../animate-in/animation.constant';
 export class HomeComponent {
 
   readonly FadeAnimationUtil = FadeAnimationUtil;
-
-  isMenuOpen = true;
-  fadeUpAnimation: FadeAnimationParams = {animationDuration: 1000, distance: 300};
-
-  toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
 }

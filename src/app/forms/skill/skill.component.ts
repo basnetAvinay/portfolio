@@ -60,6 +60,7 @@ export class SkillComponent implements OnInit {
       {name: 'Oauth', data: 90, tooltipText: '90%', barColor: '#2EC4B6'},
       {name: 'Firebase', data: 70, tooltipText: '70%', barColor: '#4F517D'},
       {name: 'Git', data: 90, tooltipText: '90%', barColor: '#ec5453'},
+      {name: 'Docker', data: 50, tooltipText: '50%', barColor: '#AF9164'},
       // {name: 'NGINX'}
     ];
 
@@ -67,7 +68,7 @@ export class SkillComponent implements OnInit {
       {section: 'Languages', charts: languagesChart},
       {section: 'Frontends', charts: frontEnds},
       {section: 'Backends', charts: backEnds},
-      {section: 'Miscellaneous', charts: misc}
+      {section: 'Miscellaneous', charts: misc},
     ];
 
 
@@ -78,7 +79,7 @@ export class SkillComponent implements OnInit {
       // {name: 'D3.js', data: 65, tooltipText: '65%', barColor: '#037971'},
       // {name: 'Micro Frontends', data: 65, tooltipText: '65%', barColor: '#2EC4B6'},
       // {name: 'Firebase', data: 70, tooltipText: '70%', barColor: '#4F517D'},
-
+      //
       // {name: 'JavaScript', data: 90, tooltipText: '90%', barColor: '#a84cb8'},
       // {name: 'TypeScript', data: 90, tooltipText: '90%', barColor: '#2fa499'},
       // {name: 'Angular', data: 90, tooltipText: '90%', barColor: '#e31b6d'},

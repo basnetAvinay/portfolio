@@ -1,0 +1,70 @@
+<mat-toolbar>
+  <button (click)="toggleMenu()"
+          *ngIf="isMenuOpen"
+          [animateInAnimation]="FadeAnimationUtil.fadeUp(fadeUpAnimation)"
+          animateIn
+          mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+  <button (click)="toggleMenu()"
+          *ngIf="!isMenuOpen"
+          [animateInAnimation]="FadeAnimationUtil.fadeUp(fadeUpAnimation)"
+          animateIn
+          mat-icon-button>
+    <mat-icon>expand_more</mat-icon>
+  </button>
+  <ng-container *ngIf="isMenuOpen">
+    <a *ngIf="activeFragment"
+       [animateInAnimation]="FadeAnimationUtil.fadeUp(fadeUpAnimation)"
+       [routerLinkActiveOptions]="linkActiveOptions"
+       [routerLink]="['./']"
+       animateIn
+       color="accent"
+       fragment="home"
+       mat-button
+       routerLinkActive="active">Home</a>
+    <a [animateInAnimation]="FadeAnimationUtil.fadeUp(fadeUpAnimation)"
+       [routerLinkActiveOptions]="linkActiveOptions"
+       [routerLink]="['./']"
+       animateIn
+       color="accent"
+       fragment="skill"
+       mat-button
+       routerLinkActive="active">Skills</a>
+    <a [animateInAnimation]="FadeAnimationUtil.fadeUp(fadeUpAnimation)"
+       [routerLinkActiveOptions]="linkActiveOptions"
+       [routerLink]="['./']"
+       animateIn
+       color="accent"
+       fragment="experience"
+       mat-button
+       routerLinkActive="active">
+      Experiences
+    </a>
+    <a [animateInAnimation]="FadeAnimationUtil.fadeUp(fadeUpAnimation)"
+       [routerLinkActiveOptions]="linkActiveOptions"
+       [routerLink]="['./']"
+       animateIn
+       color="accent"
+       fragment="project"
+       mat-button
+       routerLinkActive="active">
+      Projects
+    </a>
+    <a [animateInAnimation]="FadeAnimationUtil.fadeUp(fadeUpAnimation)"
+       animateIn
+       color="accent"
+       href="https://avinayblog.netlify.app/" mat-button
+       target="_blank">Blog</a>
+    <a [animateInAnimation]="FadeAnimationUtil.fadeUp(fadeUpAnimation)"
+       [routerLinkActiveOptions]="linkActiveOptions"
+       [routerLink]="['./']"
+       animateIn
+       color="accent"
+       fragment="contact"
+       mat-button
+       routerLinkActive="active">
+      Contact
+    </a>
+  </ng-container>
+</mat-toolbar>

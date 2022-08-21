@@ -1,52 +1,21 @@
-<app-boxes></app-boxes>
-<div class="root centre-xy">
-  <div class="child">
-    <p [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn class="text">
-      Hi! I'm <span class="highlight">Avinay</span>.
-    </p>
-    <p [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn class="text">
-      I'm a full stack software developer.
-    </p>
-    <div class="more-info centre-xy">
-      <button [animateInAnimation]="FadeAnimationUtil.fadeLeft()"
-              animateIn
-              class="button-lg"
-              color="primary"
-              mat-stroked-button>
-        <mat-icon>save</mat-icon>
-        Download CV
-      </button>
-    </div>
-    <div class="toggle-menu">
-      <button (click)="toggleMenu()"
-              *ngIf="isMenuOpen"
-              [animateInAnimation]="FadeAnimationUtil.fadeDown()"
-              animateIn
-              mat-icon-button>
-        <mat-icon>close</mat-icon>
-      </button>
-      <button (click)="toggleMenu()"
-              *ngIf="!isMenuOpen"
-              [animateInAnimation]="FadeAnimationUtil.fadeDown()"
-              animateIn
-              mat-icon-button>
-        <mat-icon>expand_more</mat-icon>
-      </button>
-      <div *ngIf="isMenuOpen" class="menu centre-xy">
-        <button [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn color="accent" mat-button>
-          Contact
-        </button>
-        <button [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn color="accent" mat-button>
-          Skills
-        </button>
-        <button [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn color="accent" mat-button>
-          Contact
-        </button>
-        <button [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn color="accent" mat-button>
-          Skills
-        </button>
-        <button [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn color="accent" mat-button>
-          Contact
+<div id="home">
+  <app-boxes></app-boxes>
+  <div class="root centre-xy">
+    <div class="child">
+      <p [animateInAnimation]="FadeAnimationUtil.fadeLeft()" animateIn class="text">
+        Hi! I'm <span class="highlight">Avinay</span>.
+      </p>
+      <p [animateInAnimation]="FadeAnimationUtil.fadeRight()" animateIn class="text">
+        I'm a full stack software developer.
+      </p>
+      <div class="more-info centre-xy">
+        <button [animateInAnimation]="FadeAnimationUtil.fadeLeft()"
+                animateIn
+                class="button-lg"
+                color="primary"
+                mat-stroked-button>
+          <mat-icon>save</mat-icon>
+          Download CV
         </button>
       </div>
     </div>

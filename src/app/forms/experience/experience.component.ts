@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FadeAnimationUtil} from "../../utils/animation/fade-animation.util";
+import {FadeAnimationUtil} from '../../utils/animation/fade-animation.util';
 
 interface Experience {
   jobTitle: string;
